@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    width: 100%;
+    max-width: 450px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  button:hover { background-color: #1e7e34; }
+
+  .terms {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+
+  .terms input {
+    width: auto;
+    margin-right: 8px;
+  }
+
+  .links {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .links a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .links a:hover {
+    color: #0056b3;
+  }
+
+  .error {
+    color: red;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>User Registration</h2>
+
+  <form id="registerForm">
+    <label for="name">Full Name *</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <label for="phone">Phone Number *</label>
+    <input type="tel" id="phone" placeholder="10-digit phone number" pattern="[0-9]{10}" required>
+
+    <label for="email">Email *</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <label for="password">Create Password *</label>
+    <input type="password" id="password" placeholder="Enter password" required>
+
+    <label for="confirmPassword">Confirm Password *</label>
+    <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+
+    <!-- Terms & Conditions -->
+    <div class="terms">
+      <strong>Terms & Conditions:</strong>
+      <p>
+        By registering, you agree that the information you provide is accurate and truthful. 
+        You are responsible for maintaining the confidentiality of your password and account. 
+        Misuse of this registration system, including creating fake accounts or providing false information, is prohibited. 
+        The platform is not responsible for any user actions or consequences arising from your account.
+      </p>
+      <label>
+        <input type="checkbox" id="agree" required> I have read and agree to the Terms & Conditions.
+      </label>
+    </div>
+
+    <div class="error" id="errorMsg"></div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div class="links">
+    Already have an account? <a href="login2.html">Login here</a>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('registerForm');
+  const errorMsg = document.getElementById('errorMsg');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    errorMsg.textContent = "";
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const agree = document.getElementById('agree').checked;
+
+    if (!agree) {
+      errorMsg.textContent = "❌ You must agree to the Terms & Conditions.";
+      return;
+    }
+
+    if(password !== confirmPassword){
+      errorMsg.textContent = "❌ Passwords do not match.";
+      return;
+    }
+
+    // Save user in localStorage (for demo purpose)
+    const user = { name, phone, email, password };
+    localStorage.setItem('user', JSON.stringify(user));
+
+    alert("✅ Registration successful!");
+    form.reset();
+  });
+</script>
+
+</body>
+</html>

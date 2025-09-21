@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Police Complaint Registration</title>
+<style>
+:root{--card:#fff;--bg:#f5f7fa;--accent:#0b63c6}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);margin:0;padding:20px;display:flex;justify-content:center}
+.container{width:100%;max-width:920px}
+.card{background:var(--card);border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06);padding:18px;margin-bottom:14px}
+header{display:flex;align-items:center;gap:12px}
+h1{margin:0;font-size:20px}
+select.lang{margin-left:auto;padding:6px;border-radius:6px}
+label{display:block;margin-top:10px;font-size:14px;color:#222}
+input[type="text"], input[type="email"], input[type="tel"], select, textarea, input[type="date"], input[type="time"], input[type="file"] {
+  width:100%;padding:10px;border:1px solid #d1d7dc;border-radius:6px;margin-top:6px;box-sizing:border-box;
+}
+textarea{min-height:110px;resize:vertical}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+.small{font-size:13px;color:#555;margin-top:6px}
+.actions{display:flex;gap:10px;align-items:center;margin-top:14px}
+button{background:var(--accent);color:#fff;border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
+.btn-secondary{background:#eee;color:#111;border:0}
+.files-preview img{max-width:140px;margin:8px;border-radius:6px;border:1px solid #ccc}
+.files-preview div{margin:4px 0;font-size:13px}
+.error{color:#b00020;font-size:13px}
+.hidden{display:none}
+#complaintId { font-weight: bold; color: darkblue; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <header>
+      <h1 id="title">Police Complaint</h1>
+      <select id="lang" class="lang">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="mr">मराठी</option>
+      </select>
+    </header>
+    <div id="subtitle" class="small">Your information will be submitted securely.</div>
+  </div>
+
+  <form id="complaintForm" class="card" enctype="multipart/form-data" novalidate>
+    <fieldset style="border:0;padding:0;margin:0">
+      <label>Full Name <span style="color:red">*</span>
+        <input name="name" id="name" type="text" required>
+      </label>
+
+      <div class="row">
+        <div>
+          <label>Mobile Number <span style="color:red">*</span>
+            <input name="mobile" id="mobile" type="tel" pattern="[0-9]{10}" required placeholder="10 digits">
+          </label>
+        </div>
+        <div>
+          <label>Email (optional)
+            <input name="email" id="email" type="email" placeholder="you@example.com">
+          </label>
+        </div>
+      </div>
+
+      <label>Address / Place where incident occurred
+        <textarea name="address" id="address" required></textarea>
+      </label>
+
+      <div class="row">
+        <div>
+          <label>Date of incident <span style="color:red">*</span>
+            <input name="date" id="date" type="date" required>
+          </label>
+        </div>
+        <div>
+          <label>Time (if known)
+            <input name="time" id="time" type="time">
+          </label>
+        </div>
+      </div>
+
+      <label>Place / Landmark
+        <input name="place" id="place" type="text" required>
+      </label>
+
+      <label>Accused details (if known)
+        <input name="accused" id="accused" type="text">
+      </label>
+
+      <!-- FIR Type Dropdown -->
+      <label>Select FIR Type <span style="color:red">*</span>
+        <select name="firType" id="firType" required>
+          <option value="">Select</option>
+          <optgroup label="Personal / Human">
+            <option value="assault">Assault / Physical Violence</option>
+            <option value="domestic_violence">Domestic Violence</option>
+            <option value="sexual_harassment">Sexual Harassment</option>
+            <option value="rape">Rape / Sexual Assault</option>
+            <option value="child_abuse">Child Abuse / Exploitation</option>
+            <option value="kidnapping">Kidnapping / Abduction</option>
+            <option value="missing_person">Missing Person</option>
+          </optgroup>
+          <optgroup label="Property">
+            <option value="bike_theft">Bike / Vehicle Theft</option>
+            <option value="mobile_theft">Mobile / Electronics Theft</option>
+            <option value="house_burglary">House Burglary / Break-in</option>
+            <option value="fraud">Fraud / Cheating / Forgery</option>
+            <option value="property_damage">Vandalism / Property Damage</option>
+            <option value="arson">Arson</option>
+            <option value="land_dispute">Land Dispute</option>
+          </optgroup>
+          <optgroup label="Social / Public">
+            <option value="fighting">Fighting / Public Disturbance</option>
+            <option value="road_rage">Road Rage / Traffic Incident</option>
+            <option value="drunk_disorderly">Drunk & Disorderly Conduct</option>
+          </optgroup>
+          <optgroup label="Cyber / Fraud">
+            <option value="cyberbullying">Cyberbullying</option>
+            <option value="hacking">Hacking / Data Theft</option>
+            <option value="online_harassment">Online Harassment / Stalking</option>
+          </optgroup>
+          <optgroup label="Others">
+            <option value="suicide_attempt">Suicide / Attempt to Self-Harm</option>
+            <option value="exam_fraud">Paper Leak / Exam Fraud</option>
+            <option value="corruption">Corruption / Bribery</option>
+            <option value="drug_related">Drug / Alcohol-related Crimes</option>
+          </optgroup>
+        </select>
+      </label>
+
+      <!-- Evidence Upload -->
+      <label>Upload Evidence (photo/pdf, max 5MB each)
+        <input type="file" id="evidence" name="evidence" accept="image/*,application/pdf" multiple>
+      </label>
+      <div class="files-preview" id="filesPreview"></div>
+
+      <label style="margin-top:12px">
+        <input type="checkbox" id="declaration" required> I declare that the information given is true.
+      </label>
+
+      <div id="formError" class="error"></div>
+
+      <div class="actions">
+        <button type="submit" id="submitBtn">Submit Complaint</button>
+        <button type="button" class="btn-secondary" id="clearBtn">Reset</button>
+        <div style="margin-left:auto" class="small">Your information will be submitted securely.</div>
+      </div>
+    </fieldset>
+  </form>
+
+  <!-- Complaint Result -->
+  <div id="resultCard" class="card hidden">
+    <h3>Complaint Submitted</h3>
+    <p>Your Complaint ID: <span id="complaintId">---</span></p>
+    <p>FIR Type: <span id="submittedFIR">---</span></p>
+    <p>Submitted on: <span id="submittedDate">---</span></p>
+    <p>Status: <span id="complaintStatus">Pending</span></p>
+  </div>
+</div>
+
+<script>
+// File Preview
+const filesInput = document.getElementById('evidence');
+const preview = document.getElementById('filesPreview');
+filesInput.addEventListener('change', () => {
+  preview.innerHTML = '';
+  Array.from(filesInput.files).slice(0,5).forEach(file => {
+    if(file.size > 5*1024*1024){
+      const div = document.createElement('div'); div.className='error'; div.textContent = file.name+' — file too large'; preview.appendChild(div);
+      return;
+    }
+    if(file.type.startsWith('image/')){
+      const img = document.createElement('img'); img.src = URL.createObjectURL(file); img.onload=()=>URL.revokeObjectURL(img.src); preview.appendChild(img);
+    }else{
+      const div = document.createElement('div'); div.textContent = file.name+' ('+Math.round(file.size/1024)+' KB)'; preview.appendChild(div);
+    }
+  });
+});
+
+// Form Submit
+const form = document.getElementById('complaintForm');
+const formError = document.getElementById('formError');
+const resultCard = document.getElementById('resultCard');
+const complaintIdEl = document.getElementById('complaintId');
+const submittedFIR = document.getElementById('submittedFIR');
+const submittedDateEl = document.getElementById('submittedDate');
+const complaintStatusEl = document.getElementById('complaintStatus');
+
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  formError.textContent='';
+  if(!form.checkValidity()){ formError.textContent="Please fill required fields."; return; }
+
+  const complaintId = 'FIR-'+Date.now();
+  complaintIdEl.textContent = complaintId;
+  submittedFIR.textContent = document.getElementById('firType').value;
+  submittedDateEl.textContent = new Date().toLocaleString();
+  complaintStatusEl.textContent = "Pending";
+
+  resultCard.classList.remove('hidden');
+  form.reset();
+  preview.innerHTML='';
+});
+
+// Reset
+document.getElementById('clearBtn').addEventListener('click', ()=>{
+  form.reset();
+  preview.innerHTML='';
+  formError.textContent='';
+  resultCard.classList.add('hidden');
+});
+</script>
+</body>
+</html>

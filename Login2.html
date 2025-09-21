@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+  /* Reset default browser styles */
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+  }
+
+  .login-container {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  h2 {
+    margin-bottom: 25px;
+    color: #333;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .links {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  .links a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: color 0.2s;
+  }
+
+  .links a:hover {
+    color: #0056b3;
+  }
+
+  .small-note {
+    font-size: 12px;
+    color: #555;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Login</h2>
+
+  <form id="loginForm">
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    <button type="submit">Login</button>
+  </form>
+
+  <div class="links">
+    <a href="register.html">Create Account</a> |
+    <a href="forgot_password2.html">Forgot Password?</a>
+  </div>
+
+  <div class="small-note">
+    Please use your registered email and password to login.
+  </div>
+</div>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if(email === "" || password === "") {
+      alert("Please fill in both fields.");
+      return;
+    }
+
+    // Here you can add your login logic, e.g., check localStorage or server
+    alert("Login attempted with Email: " + email + "\nPassword: " + password);
+  });
+</script>
+
+</body>
+</html>

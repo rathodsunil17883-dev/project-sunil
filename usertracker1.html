@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIR Status Tracking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      text-align: center;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+    .tracker {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 40px auto;
+      max-width: 600px;
+    }
+    .tracker::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: #ccc;
+      z-index: -1;
+      transform: translateY(-50%);
+    }
+    .step {
+      width: 30px;
+      height: 30px;
+      background: #ccc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: white;
+      position: relative;
+    }
+    .step.active {
+      background: #007bff;
+    }
+    .label {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: darkblue;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>FIR Status Tracking</h2>
+  <p>Enter your FIR Number to check status:</p>
+
+  <input type="text" id="firNumber" placeholder="FIR-2025-001" required>
+  <button onclick="checkStatus()">Check Status</button>
+
+  <div id="result"></div>
+
+  <div class="tracker" id="progressTracker" style="display:none;">
+    <div>
+      <div class="step" id="step1">1</div>
+      <div class="label">Pending</div>
+    </div>
+    <div>
+      <div class="step" id="step2">2</div>
+      <div class="label">Working</div>
+    </div>
+    <div>
+      <div class="step" id="step3">3</div>
+      <div class="label">Solved</div>
+    </div>
+  </div>
+
+  <script>
+    // Example FIR records (demo data)
+    const firRecords = {
+      "FIR-2025-001": "Pending",
+      "FIR-2025-002": "Working",
+      "FIR-2025-003": "Solved"
+    };
+
+    function checkStatus() {
+      const firNumber = document.getElementById("firNumber").value.trim();
+      const resultDiv = document.getElementById("result");
+      const tracker = document.getElementById("progressTracker");
+
+      if (firRecords[firNumber]) {
+        resultDiv.innerHTML = `Status of <b>${firNumber}</b>: ${firRecords[firNumber]}`;
+        tracker.style.display = "flex";
+        setStatus(firRecords[firNumber]);
+      } else {
+        resultDiv.innerHTML = `❌ No record found for FIR Number: <b>${firNumber}</b>`;
+        tracker.style.display = "none";
+      }
+    }
+
+    function setStatus(status) {
+      // Reset all steps
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById("step" + i).classList.remove("active");
+      }
+
+      if (status === "Pending") {
+        document.getElementById("step1").classList.add("active");
+      } else if (status === "Working") {
+        document.getElementById("step1").classList.add("active");
+        document.getElementById("step2").classList.add("active");
+      } else if (status === "Solved") {
+        document.getElementById("step1").classList.add("active");
+        document.getElementById("step2").classList.add("active");
+        document.getElementById("step3").classList.add("active");
+      }
+    }
+  </script>
+
+</body>
+</html>
