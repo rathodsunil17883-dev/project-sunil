@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIR Progress Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+    .tracker {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 40px 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tracker::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 4px;
+      width: 100%;
+      background: #ccc;
+      z-index: -1;
+      transform: translateY(-50%);
+    }
+    .step {
+      width: 30px;
+      height: 30px;
+      background: #ccc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: white;
+      position: relative;
+    }
+    .step.active {
+      background: #007bff;
+    }
+    .label {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>FIR Progress Tracker</h2>
+  <p>Track FIR status tracking</p>
+
+  <div class="tracker">
+    <div>
+      <div class="step" id="step1">1</div>
+      <div class="label">Pending</div>
+    </div>
+    <div>
+      <div class="step" id="step2">2</div>
+      <div class="label">Working</div>
+    </div>
+    <div>
+      <div class="step" id="step3">3</div>
+      <div class="label">Solved</div>
+    </div>
+  </div>
+
+  <button onclick="setStatus(1)">Set to Pending</button>
+  <button onclick="setStatus(2)">Set to Working</button>
+  <button onclick="setStatus(3)">Set to Solved</button>
+
+  <script>
+    function setStatus(step) {
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById("step" + i).classList.remove("active");
+      }
+      for (let i = 1; i <= step; i++) {
+        document.getElementById("step" + i).classList.add("active");
+      }
+    }
+    // Default: Pending
+    setStatus(1);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>e-FIR Status Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; max-width:600px; margin:auto; }
+    input, button { padding:10px; width:100%; margin-bottom:10px; }
+    .timeline { list-style:none; padding:0; }
+    .timeline li { margin-bottom:10px; padding-left:20px; position: relative; }
+    .timeline li:before { content:""; position:absolute; left:0; top:5px; width:10px; height:10px; border-radius:50%; background:#ccc; }
+    .timeline li.active:before { background:#28a745; }
+    .timeline li.active { font-weight:bold; }
+    .error { color:red; }
+  </style>
+</head>
+<body>
+  <h1>e-FIR Status Tracker</h1>
+  <input type="text" id="firNum" placeholder="Enter FIR / Complaint Number">
+  <button id="trackBtn">Track FIR Status</button>
+  <div id="statusArea"></div>
+
+  <script>
+    document.getElementById('trackBtn').addEventListener('click', () => {
+      const fir = document.getElementById('firNum').value.trim();
+      const statusArea = document.getElementById('statusArea');
+      statusArea.innerHTML = 'Loading...';
+
+      if (!fir) {
+        statusArea.innerHTML = '<div class="error">Please enter a FIR / Complaint number.</div>';
+        return;
+      }
+
+      // Call backend endpoint for e-FIR status
+      fetch('/api/efir-status?firNumber=' + encodeURIComponent(fir))
+        .then(res => {
+          if (!res.ok) throw new Error('Server error');
+          return res.json();
+        })
+        .then(data => {
+          // data expected: { success: true, history: [ {time, status}, ... ], currentStatus: "Investigation", firNumber: "XXX" }
+          if (!data.success) {
+            statusArea.innerHTML = '<div class="error">' + (data.message || 'No status found for this FIR number.') + '</div>';
+            return;
+          }
+
+          const history = data.history;
+          let html = '<ul class="timeline">';
+          history.forEach((ev, idx) => {
+            html += `<li class="${idx === history.length -1 ? 'active' : ''}">
+                       <strong>${ev.time}</strong><br>${ev.status}
+                     </li>`;
+          });
+          html += '</ul>';
+          html = `<div>FIR Number: ${data.firNumber}</div>` + html;
+          statusArea.innerHTML = html;
+        })
+        .catch(err => {
+          statusArea.innerHTML = '<div class="error">Error: ' + err.message + '</div>';
+        });
+    });
+  </script>
+</body>
+</html>
+
+</body>
+</html>
