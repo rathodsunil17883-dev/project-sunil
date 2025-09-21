@@ -1,4 +1,5 @@
 # project-sunil
-this is my  first  git Repository.
-author - sunil Rathod
+This is my  first  git Repository.
+<br>
+Author - Sunil Rathod
 
