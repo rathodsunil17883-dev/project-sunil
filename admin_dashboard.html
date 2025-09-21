@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#">Manage Complaints</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <header class="header">
+                <h1>Complaint Management System</h1>
+            </header>
+
+            <!-- Cards -->
+            <section class="cards">
+                <div class="card">
+                    <h3>Total Complaints</h3>
+                    <p>35</p>
+                </div>
+                <div class="card">
+                    <h3>Pending</h3>
+                    <p>10</p>
+                </div>
+                <div class="card">
+                    <h3>Resolved</h3>
+                    <p>15</p>
+                </div>
+            </section>
+
+            <!-- Charts -->
+            <section class="charts">
+                <h2>Statistics</h2>
+                <div class="chart-container">
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const labels = ["Submitted", "Verified", "In Progress", "Resolved", "Closed"];
+        const dataValues = [10, 5, 7, 8, 5];
+
+        // Bar Chart
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Complaints',
+                    data: dataValues,
+                    backgroundColor: [
+                        '#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Pie Chart
+        new Chart(document.getElementById('pieChart'), {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: dataValues,
+                    backgroundColor: [
+                        '#e74c3c', '#3498db', '#f1c40f', '#2ecc71', '#9b59b6'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
