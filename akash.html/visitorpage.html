@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Management System</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome for Social Media Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* General Reset */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(to right, #f4f6f9, #ffffff);
+        }
+        /* Navbar */
+        
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+        
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+        
+        .navbar ul li a:hover,
+        .logout {
+            color: #f39c12;
+        }
+        /* Hero Section */
+        
+        .hero {
+            height: 70vh;
+            background: url('policestation.png') center no-repeat;
+            background-size: 100% 150%;
+            /* Change size here */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero h1,
+        .hero p,
+        .hero .btn {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .hero p {
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: #f39c12;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e67e22;
+        }
+        /* Info Section */
+        
+        .info-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            gap: 120px;
+            background: #fff;
+            border-radius: 10px;
+            margin: 30px auto;
+            width: 90%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-section img {
+            max-width: 25%;
+            height: 10%;
+            border-radius: 10px;
+        }
+        
+        .info-text {
+            width: 55%;
+            text-align: left;
+        }
+        
+        .info-text h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .info-text p {
+            color: #555;
+            font-size: 1.1em;
+        }
+        /* Sections */
+        
+        section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .about,
+        .contact {
+            background: #ecf0f1;
+            margin: 20px 0;
+            border-radius: 10px;
+            padding: 30px;
+        }
+        /* Footer */
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        footer .social-icons a {
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+        
+        footer .social-icons a:hover {
+            color: #f39c12;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Sangli police Complaint Portal</div>
+            <ul class="nav-links">
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+
+                <li><a href="#"><i class="fas fa-search-location"></i> Track Complaint</a></li>
+
+
+                <li><a href="#"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to the Complaint Management System</h1>
+        <p>Register your complaint easily and track its progress anytime.</p>
+        <a href="#" class="btn">Register Complaint</a>
+    </section>
+
+    <!-- Info Section (Add Photo + Description Here) -->
+    <section class="info-section">
+        <img src="WhatsApp-Image-2024-07-06-at-15.58.48.jpg" alt="Awareness Image">
+        <div class="info-text">
+            <h2>Shri. Sandip B.Ghuge </h2>
+            <h3>IPS Superintendent of Police, Sangli</h3>
+            <p>
+                Our portal ensures transparency, accountability, and speed. Citizens can lodge their complaints in just a few clicks and monitor the progress at every stage. Together, we make our community safer and stronger.
+            </p>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="about" id="about">
+        <h2>About Us</h2>
+        <p>
+            Our system provides a transparent and efficient way for the public to lodge complaints and track their resolution. We aim to make the process simple, fast, and reliable.
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@complaintportal.com</p>
+        <p>Phone: +91 9876543210</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Follow us on:</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 Complaint Portal. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>

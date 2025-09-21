@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Complaint Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+        }
+        /* Navbar */
+        
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+        }
+        
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+        
+        .navbar ul li a:hover {
+            color: #f39c12;
+        }
+        /* Dashboard */
+        
+        .dashboard {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+        }
+        /* Sidebar */
+        
+        .sidebar {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .sidebar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar h3 {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar p {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            margin: 8px 0;
+            text-decoration: none;
+            background: #2c3e50;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .sidebar a:hover {
+            background: #f39c12;
+        }
+        /* Main Content */
+        
+        .main-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-content h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background: #f39c12;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e67e22;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Complaint Portal</div>
+        <ul>
+            <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="#"><i class="fas fa-file-alt"></i> File Complaint</a></li>
+            <li><a href="#"><i class="fas fa-history"></i> History</a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Icon">
+            <h3>John Doe</h3>
+            <p>Logged in as: Citizen</p>
+            <a href="#"><i class="fas fa-file-alt"></i> File Complaint</a>
+            <a href="#"><i class="fas fa-history"></i> Complaint History</a>
+            <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2>Welcome, John!</h2>
+
+            <div class="card">
+                <h3>File a New Complaint</h3>
+                <p>You can submit your complaint easily and track it anytime.</p>
+                <a href="#" class="btn">File Complaint</a>
+            </div>
+
+            <div class="card">
+                <h3>Complaint History</h3>
+                <p>View all the complaints you have submitted and their status.</p>
+                <a href="#" class="btn">View History</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
