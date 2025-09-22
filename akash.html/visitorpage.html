@@ -18,11 +18,27 @@
             padding: 0;
             box-sizing: border-box;
         }
+        /* Background Image for whole page */
         
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background: linear-gradient(to right, #f4f6f9, #ffffff);
+            background: url('policecap.png') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+        /* Semi-transparent overlay for readability */
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.7);
+            /* adjust transparency here */
+            z-index: -1;
         }
         /* Navbar */
         
@@ -121,11 +137,12 @@
             justify-content: center;
             padding: 50px 20px;
             gap: 120px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.3);
+            /* 30% visible background */
             border-radius: 10px;
             margin: 30px auto;
             width: 90%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
         
         .info-section img {
@@ -157,10 +174,12 @@
         
         .about,
         .contact {
-            background: #ecf0f1;
+            background: rgba(255, 255, 255, 0.3);
+            /* 30% visible background */
             margin: 20px 0;
             border-radius: 10px;
             padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
         /* Footer */
         
@@ -181,6 +200,50 @@
         footer .social-icons a:hover {
             color: #f39c12;
         }
+        /* Dropdown Navbar */
+        
+        .navbar ul li.dropdown {
+            position: relative;
+        }
+        /* Dropdown content styling */
+        
+        .navbar ul li.dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            /* Align to right side of navbar item */
+            margin-right: 20px;
+            /* Add some margin from the right */
+            min-width: 250px;
+            background: black;
+            /* Black background */
+            color: white;
+            /* White text */
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        /* Show dropdown on hover */
+        
+        .navbar ul li.dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Individual questions */
+        
+        .navbar ul li.dropdown .dropdown-content p {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: white;
+            /* Ensure text stays white */
+        }
+        /* Answers inside dropdown */
+        
+        .navbar ul li.dropdown .dropdown-content p small {
+            color: #ccc;
+            /* Slightly lighter for answers */
+        }
     </style>
 </head>
 
@@ -188,21 +251,49 @@
     <!-- Navigation Bar -->
     <header>
         <nav class="navbar">
-            <div class="logo">Sangli police Complaint Portal</div>
+            <div class="logo" style="display:flex; align-items:center;">
+                <!-- Logo image -->
+                <img src="sanglipolicelogo-removebg-preview.png" alt="Sangli Police Logo" style="height:70px; margin-right:10px;">
+                <!-- Portal name text -->
+                <span style="font-weight:normal; font-size:1em; color:white;">Sangli Police Complaint Portal</span>
+            </div>
             <ul class="nav-links">
                 <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-
                 <li><a href="#"><i class="fas fa-search-location"></i> Track Complaint</a></li>
 
 
-                <li><a href="#"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="#"><i class="fas fa-phone"></i> Emergency Numbers</a></li>
+                <li><a href="#"><i class="fas fa-university"></i> About Sangli Police</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Civic Sense</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-question-circle"></i> FAQs <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <p><strong>Q1:</strong> How can I register a complaint?<br>
+                            <small>A1: Click on "Register Complaint" and fill the form.</small></p>
+
+                        <p><strong>Q2:</strong> How do I track my complaint?<br>
+                            <small>A2: Use "Track Complaint" and enter your complaint ID.</small></p>
+
+                        <p><strong>Q3:</strong> What are emergency numbers?<br>
+                            <small>A3: Call 100 for emergencies.</small></p>
+
+                        <p><strong>Q4:</strong> How to provide civic feedback?<br>
+                            <small>A4: Use the "Civic Sense" section on the portal.</small></p>
+
+                        <p><strong>Q5:</strong> Is my personal info safe?<br>
+                            <small>A5: Yes, all data is encrypted and secure.</small></p>
+                    </div>
+                </li>
+
+                <li><a href="adminlogin.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
 
+
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Welcome to the Complaint Management System</h1>
+        <h1>Welcome to the Sangli Police Complaint Portal</h1>
         <p>Register your complaint easily and track its progress anytime.</p>
         <a href="#" class="btn">Register Complaint</a>
     </section>

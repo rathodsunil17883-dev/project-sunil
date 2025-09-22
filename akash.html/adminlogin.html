@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('policecap.png') no-repeat center center fixed;
+            background-size: 100% 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.35);
+            z-index: 0;
+        }
+        /* Navbar */
+        
+        .navbar {
+            width: 100%;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        .navbar ul li {
+            margin-right: 35px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .navbar ul li a:hover {
+            color: #f39c12;
+        }
+        /* Login container */
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.35);
+            padding: 40px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            margin-top: 100px;
+            /* push below navbar */
+        }
+        
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .input-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .input-group label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+        
+        .input-group input:focus {
+            border-color: #3498db;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #3498db;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .extra-links {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .extra-links a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+        /* Dropdown Navbar */
+        
+        .navbar ul li.dropdown {
+            position: relative;
+        }
+        /* Dropdown content styling */
+        
+        .navbar ul li.dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            /* Align to right side of navbar item */
+            margin-right: 20px;
+            /* Add some margin from the right */
+            min-width: 250px;
+            background: black;
+            /* Black background */
+            color: white;
+            /* White text */
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        /* Show dropdown on hover */
+        
+        .navbar ul li.dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Individual questions */
+        
+        .navbar ul li.dropdown .dropdown-content p {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: white;
+            /* Ensure text stays white */
+        }
+        /* Answers inside dropdown */
+        
+        .navbar ul li.dropdown .dropdown-content p small {
+            color: #ccc;
+            /* Slightly lighter for answers */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="visitorpage.html" style="display:flex; align-items:center; text-decoration:none; color:white;">
+                    <img src="sanglipolicelogo-removebg-preview.png" alt="Logo" style="height:70px; margin-right:10px;">
+                    <span style="font-size:1em; font-weight:normal;">Sangli Police Complaint Portal</span>
+                </a>
+            </div>
+            <ul>
+
+                <li><a href="visitorpage.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-search-location"></i> Track Complaint</a></li>
+                <li><a href="#"><i class="fas fa-phone"></i> Emergency Numbers</a></li>
+                <li><a href="#"><i class="fas fa-university"></i> About Sangli Police</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Civic Sense</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-question-circle"></i> FAQs <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <p><strong>Q1:</strong> How can I register a complaint?<br>
+                            <small>A1: Click on "Register Complaint" and fill the form.</small></p>
+
+                        <p><strong>Q2:</strong> How do I track my complaint?<br>
+                            <small>A2: Use "Track Complaint" and enter your complaint ID.</small></p>
+
+                        <p><strong>Q3:</strong> What are emergency numbers?<br>
+                            <small>A3: Call 100 for emergencies.</small></p>
+
+                        <p><strong>Q4:</strong> How to provide civic feedback?<br>
+                            <small>A4: Use the "Civic Sense" section on the portal.</small></p>
+
+                        <p><strong>Q5:</strong> Is my personal info safe?<br>
+                            <small>A5: Yes, all data is encrypted and secure.</small></p>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- Login Form -->
+    <div class="login-container">
+        <h2><i class="fas fa-user-shield"></i> Admin Login</h2>
+        <form>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <div class="extra-links">
+            <p>Don’t have an account? <a href="adminregister.html">Register</a></p>
+            <p><a href="forgotpassword.html">Forgot Password</a></p>
+            <p> <a href="">Login as User</a></p>
+
+        </div>
+    </div>
+</body>
+
+</html>

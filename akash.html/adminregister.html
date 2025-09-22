@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Registration (Police)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('policecap.png') no-repeat center center fixed;
+            background-size: 100% 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.35);
+            z-index: 0;
+        }
+        /* Navbar */
+        
+        .navbar {
+            width: 100%;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        /* Fixed navbar links */
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin-right: 35px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-right: 30px;
+            /* icon + text spacing */
+        }
+        
+        .navbar ul li a:hover {
+            color: #f39c12;
+        }
+        /* Responsive adjustment for smaller screens */
+        
+        @media (max-width: 500px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 15px;
+            }
+            .navbar ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+            .navbar ul li a {
+                width: 100%;
+            }
+        }
+        
+        .navbar ul li a:hover {
+            color: #f39c12;
+        }
+        /* Registration container */
+        
+        .register-container {
+            background: rgba(255, 255, 255, 0.35);
+            padding: 30px 25px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 450px;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            margin-top: 100px;
+            /* push below navbar */
+        }
+        
+        .register-container h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .input-group {
+            margin: 12px 0;
+            text-align: left;
+        }
+        
+        .input-group label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+        
+        .input-group input::placeholder {
+            color: #555;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #8e44ad;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #8e44ad;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            background: #732d91;
+        }
+        
+        .extra-links {
+            margin-top: 12px;
+            font-size: 14px;
+        }
+        
+        .extra-links a {
+            color: #8e44ad;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+        /* Navbar Responsive Fix */
+        
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 20px;
+            }
+            /* Navbar adjustments */
+            .navbar ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                /* allow wrapping if it overflows */
+                gap: 20px;
+                /* spacing between items */
+            }
+            .navbar ul li {
+                margin: 0;
+                /* remove left margin to avoid overflow */
+            }
+            .navbar ul li a {
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                /* icon + text spacing */
+            }
+        }
+        /* Dropdown Navbar */
+        
+        .navbar ul li.dropdown {
+            position: relative;
+        }
+        /* Dropdown content styling */
+        
+        .navbar ul li.dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            /* Align to right side of navbar item */
+            margin-right: 20px;
+            /* Add some margin from the right */
+            min-width: 250px;
+            background: black;
+            /* Black background */
+            color: white;
+            /* White text */
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        /* Show dropdown on hover */
+        
+        .navbar ul li.dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* Individual questions */
+        
+        .navbar ul li.dropdown .dropdown-content p {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: white;
+            /* Ensure text stays white */
+        }
+        /* Answers inside dropdown */
+        
+        .navbar ul li.dropdown .dropdown-content p small {
+            color: #ccc;
+            /* Slightly lighter for answers */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="visitorpage.html" style="display:flex; align-items:center; text-decoration:none; color:white;">
+                    <img src="sanglipolicelogo-removebg-preview.png" alt="Logo" style="height:70px; margin-right:10px;">
+                    <span style="font-size:1em; font-weight:normal;">Sangli Police Complaint Portal</span>
+                </a>
+            </div>
+            <ul>
+                <li><a href="visitorpage.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-search-location"></i> Track Complaint</a></li>
+                <li><a href="#"><i class="fas fa-phone"></i> Emergency Numbers</a></li>
+                <li><a href="#"><i class="fas fa-university"></i> About Sangli Police</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Civic Sense</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-question-circle"></i> FAQs <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <p><strong>Q1:</strong> How can I register a complaint?<br>
+                            <small>A1: Click on "Register Complaint" and fill the form.</small></p>
+
+                        <p><strong>Q2:</strong> How do I track my complaint?<br>
+                            <small>A2: Use "Track Complaint" and enter your complaint ID.</small></p>
+
+                        <p><strong>Q3:</strong> What are emergency numbers?<br>
+                            <small>A3: Call 100 for emergencies.</small></p>
+
+                        <p><strong>Q4:</strong> How to provide civic feedback?<br>
+                            <small>A4: Use the "Civic Sense" section on the portal.</small></p>
+
+                        <p><strong>Q5:</strong> Is my personal info safe?<br>
+                            <small>A5: Yes, all data is encrypted and secure.</small></p>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Registration Form -->
+    <div class="register-container">
+        <h2><i class="fas fa-user-shield"></i> Admin (Police) Registration</h2>
+        <form>
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter full name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Email (Official)</label>
+                <input type="email" placeholder="Enter official email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" maxlength="10" minlength="10" required>
+            </div>
+
+            <div class="input-group">
+                <label>Police ID / Badge Number</label>
+                <input type="text" placeholder="Enter badge number" required>
+            </div>
+
+            <div class="input-group">
+                <label>Rank / Designation</label>
+                <select required>
+                    <option value="">-- Select Rank --</option>
+                    <option value="Constable">Constable</option>
+                    <option value="Sub-Inspector">Sub-Inspector</option>
+                    <option value="Inspector">Inspector</option>
+                    <option value="DSP">Deputy Superintendent (DSP)</option>
+                    <option value="SP">Superintendent (SP)</option>
+                    <option value="Commissioner">Commissioner</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Police Station / Department</label>
+                <input type="text" placeholder="Enter station/department" required>
+            </div>
+
+            <div class="input-group">
+                <label>Jurisdiction / Zone</label>
+                <input type="text" placeholder="Enter jurisdiction/zone" required>
+            </div>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" placeholder="Choose a username" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" placeholder="Create a password" required>
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="Re-enter password" required>
+            </div>
+
+            <div class="input-group">
+                <label>Upload Official ID Proof</label>
+                <input type="file" accept="image/*,.pdf" required>
+            </div>
+
+            <div class="input-group">
+                <label>Security Question</label>
+                <select required>
+                    <option value="">-- Select Question --</option>
+                    <option value="station-code">What is your station code?</option>
+                    <option value="badge-year">In which year did you get your badge?</option>
+                    <option value="favorite-place">What is your favorite patrol area?</option>
+                </select>
+                <input type="text" placeholder="Enter your answer" required>
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+
+        <div class="extra-links">
+            <p>Already registered? <a href="adminlogin.html">Login here</a></p>
+            <p><a href="#">Resister as User</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
