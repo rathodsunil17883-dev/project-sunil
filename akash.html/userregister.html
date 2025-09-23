@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('img/policecap.png') no-repeat center center fixed;
+            background-size: 100% 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.35);
+            z-index: 0;
+        }
+        /* Navbar */
+        
+        .navbar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar .logo {
+            font-size: 1.2em;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        .navbar ul li {
+            margin-right: 25px;
+            position: relative;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .navbar ul li a:hover {
+            color: #f39c12;
+        }
+        /* Dropdown */
+        
+        .navbar ul li.dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-right: 20px;
+            min-width: 250px;
+            background: black;
+            color: white;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .navbar ul li.dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .navbar ul li.dropdown .dropdown-content p {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: white;
+        }
+        
+        .navbar ul li.dropdown .dropdown-content p small {
+            color: #ccc;
+        }
+        /* Registration container */
+        
+        .register-container {
+            background: rgba(255, 255, 255, 0.35);
+            padding: 40px;
+            border-radius: 12px;
+            width: 400px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            margin-top: 120px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #1e7e34;
+        }
+        
+        .terms {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .terms input {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .links {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .links a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .links a:hover {
+            text-decoration: underline;
+        }
+        
+        .error {
+            color: red;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/sanglipolicelogo-removebg-preview.png" alt="Logo"> Sangli Police Complaint Portal
+            </div>
+            <ul>
+                <li><a href="visitorpage.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="usertracker.html"><i class="fas fa-search-location"></i> Track Complaint</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-phone"></i> Emergency Numbers <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <p><strong>Police:</strong> 100</p>
+                        <p><strong>Women Helpline:</strong> 1091 / 181</p>
+                        <p><strong>Fire:</strong> 101</p>
+                        <p><strong>Ambulance:</strong> 102</p>
+                        <p><strong>Traffic Police:</strong> 103</p>
+                        <p><strong>Child Helpline:</strong> 1098</p>
+                        <p><strong>Disaster Management:</strong> 108</p>
+                        <p><strong>Senior Citizens Helpline:</strong> 14567</p>
+                        <p><strong>Cyber Crime:</strong> 155260</p>
+                    </div>
+                </li>
+
+                <li><a href="aboutsanglipolice.html"><i class="fas fa-university"></i> About Sangli Police </a></li>
+
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-question-circle"></i> FAQs <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <p><strong>Q1:</strong> How to register a complaint?<br>
+                            <small>A1: Click on "Register Complaint" and fill the form.</small></p>
+                        <p><strong>Q2:</strong> How to track complaints?<br>
+                            <small>A2: Use "Track Complaint" with your complaint ID.</small></p>
+                        <p><strong>Q3:</strong> What are emergency numbers?<br>
+                            <small>A3: Call 100 for immediate help.</small></p>
+                        <p><strong>Q4:</strong> How to give feedback?<br>
+                            <small>A4: Use the "Civic Sense" section.</small></p>
+                        <p><strong>Q5:</strong> Is my info safe?<br>
+                            <small>A5: Yes, all data is secure.</small></p>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Registration Form -->
+    <div class="register-container">
+        <h2><i class="fas fa-user-plus"></i> User Registration</h2>
+        <form id="registerForm">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" placeholder="10-digit phone number" pattern="[0-9]{10}" required>
+
+            <label for="email">Email *</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="password">Create Password *</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+
+            <label for="confirmPassword">Confirm Password *</label>
+            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+
+            <!-- Terms & Conditions -->
+            <div class="terms">
+                <strong>Terms & Conditions:</strong>
+                <p>
+                    By registering, you agree that the information you provide is accurate and truthful. You are responsible for maintaining the confidentiality of your password and account. Misuse of this registration system, including creating fake accounts or providing
+                    false information, is prohibited. The platform is not responsible for any user actions or consequences arising from your account.
+                </p>
+                <label>
+          <input type="checkbox" id="agree" required> I have read and agree to the Terms & Conditions.
+        </label>
+            </div>
+
+            <div class="error" id="errorMsg"></div>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="links">
+            Already have an account? <a href="userlogin.html">Login here</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const errorMsg = document.getElementById('errorMsg');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            errorMsg.textContent = "";
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const agree = document.getElementById('agree').checked;
+
+            if (!agree) {
+                errorMsg.textContent = "❌ You must agree to the Terms & Conditions.";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorMsg.textContent = "❌ Passwords do not match.";
+                return;
+            }
+
+            // Save user in localStorage (for demo purpose)
+            const user = {
+                name,
+                phone,
+                email,
+                password
+            };
+            localStorage.setItem('user', JSON.stringify(user));
+
+            alert("✅ Registration successful!");
+            form.reset();
+        });
+    </script>
+
+
+</body>
+
+</html>

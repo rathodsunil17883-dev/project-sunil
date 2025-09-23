@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+        /* Navbar */
+        
+        .navbar {
+            width: 100%;
+            background: #2c3e50;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.2em;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .navbar .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .navbar .links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+        
+        .navbar .links a:hover {
+            color: #1abc9c;
+        }
+        /* Sidebar */
+        
+        .container {
+            display: flex;
+            padding-top: 70px;
+        }
+        
+        .sidebar {
+            width: 220px;
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 20px;
+            min-height: calc(100vh - 70px);
+            position: fixed;
+            top: 70px;
+            left: 0;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+        
+        .sidebar ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background: #1abc9c;
+            color: white;
+        }
+        /* Main content */
+        
+        .main {
+            margin-left: 220px;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table th {
+            background: #2c3e50;
+            color: white;
+        }
+        
+        table tr:hover {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="dashboard.html" class="logo">
+            <img src="img/sanglipolicelogo-removebg-preview.png" alt="Logo"> Admin Panel
+        </a>
+        <div class="links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="logout.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul>
+                <li><a href="graph.html">Dashboard</a></li>
+                <li><a href="managecomplaints.html">Manage Complaints</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-phone"></i> Emergency Numbers <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <p><strong>Police:</strong> 100</p>
+                        <p><strong>Women Helpline:</strong> 1091 / 181</p>
+                        <p><strong>Fire:</strong> 101</p>
+                        <p><strong>Ambulance:</strong> 102</p>
+                        <p><strong>Traffic Police:</strong> 103</p>
+                        <p><strong>Child Helpline:</strong> 1098</p>
+                        <p><strong>Disaster Management:</strong> 108</p>
+                        <p><strong>Senior Citizens Helpline:</strong> 14567</p>
+                        <p><strong>Cyber Crime:</strong> 155260</p>
+                    </div>
+                </li>
+                <li><a href="manage_users.html" class="active">Manage Users</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <h1>Manage Users</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTable">
+                    <tr>
+                        <td>1</td>
+                        <td>U101</td>
+                        <td>Akash Khot</td>
+                        <td>9876543210</td>
+                        <td>akash@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>U102</td>
+                        <td>Neha Patil</td>
+                        <td>9123456780</td>
+                        <td>neha@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>U103</td>
+                        <td>Rahul Deshmukh</td>
+                        <td>9988776655</td>
+                        <td>rahul@example.com</td>
+                    </tr>
+                    <!-- Add more users dynamically here -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+
+</html>

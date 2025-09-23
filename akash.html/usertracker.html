@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIR Status Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('img/policecap.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 120px;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.35);
+            z-index: 0;
+        }
+        /* Navbar */
+        
+        .navbar {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar .logo {
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar ul li {
+            margin-right: 25px;
+            position: relative;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .navbar ul li a:hover {
+            color: #f39c12;
+        }
+        
+        .navbar ul li.dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 250px;
+            background: black;
+            color: white;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .navbar ul li.dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .navbar ul li.dropdown .dropdown-content p {
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        
+        .navbar ul li.dropdown .dropdown-content p small {
+            color: #ccc;
+        }
+        /* Tracker Container */
+        
+        .tracker-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        input[type="text"] {
+            width: 60%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        /* Tracker Steps */
+        
+        .tracker {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 50px auto 0;
+            max-width: 100%;
+        }
+        
+        .tracker::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: #ccc;
+            z-index: -1;
+            transform: translateY(-50%);
+            border-radius: 3px;
+        }
+        
+        .step {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .step.active {
+            background: #007bff;
+        }
+        
+        .label {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            color: darkblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="img/sanglipolicelogo-removebg-preview.png" alt="Logo"> Sangli Police Complaint Portal
+            </div>
+            <ul>
+                <li><a href="visitorpage.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="usertracker.html"><i class="fas fa-search-location"></i> Track Complaint</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-phone"></i> Emergency Numbers <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <p><strong>Police:</strong> 100</p>
+                        <p><strong>Women Helpline:</strong> 1091 / 181</p>
+                        <p><strong>Fire:</strong> 101</p>
+                        <p><strong>Ambulance:</strong> 102</p>
+                        <p><strong>Traffic Police:</strong> 103</p>
+                        <p><strong>Child Helpline:</strong> 1098</p>
+                        <p><strong>Disaster Management:</strong> 108</p>
+                        <p><strong>Senior Citizens Helpline:</strong> 14567</p>
+                        <p><strong>Cyber Crime:</strong> 155260</p>
+                    </div>
+                </li>
+                <li><a href="aboutsanglipolice.html"><i class="fas fa-university"></i> About Sangli Police </a></li>
+
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-question-circle"></i> FAQs <i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <p><strong>Q1:</strong> How to register a complaint?<br><small>A1: Click on "Register Complaint" and fill the form.</small></p>
+                        <p><strong>Q2:</strong> How to track complaints?<br><small>A2: Use "Track Complaint" with your complaint ID.</small></p>
+                        <p><strong>Q3:</strong> Emergency numbers?<br><small>A3: Call 100 for immediate help.</small></p>
+                        <p><strong>Q4:</strong> Feedback?<br><small>A4: Use the "Civic Sense" section.</small></p>
+                        <p><strong>Q5:</strong> Is info safe?<br><small>A5: Yes, all data is secure.</small></p>
+                    </div>
+                </li>
+                <li><a href="login2.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="tracker-container">
+        <h2>Track Your FIR</h2>
+        <p>Enter your FIR ID to see status:</p>
+        <input type="text" id="firNumber" placeholder="FIR-123/2025">
+        <button onclick="trackFIR()">Track FIR</button>
+
+        <div id="result"></div>
+
+        <div class="tracker" id="progressTracker" style="display:none;">
+            <div>
+                <div class="step" id="step1">1</div>
+                <div class="label">Pending</div>
+            </div>
+            <div>
+                <div class="step" id="step2">2</div>
+                <div class="label">Working</div>
+            </div>
+            <div>
+                <div class="step" id="step3">3</div>
+                <div class="label">Solved</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function trackFIR() {
+            const firID = document.getElementById("firNumber").value.trim();
+            if (firID === "") {
+                alert("Enter FIR ID");
+                return;
+            }
+
+            fetch("getFIRStatus.php?fir=" + encodeURIComponent(firID))
+                .then(res => res.json())
+                .then(data => {
+                    const tracker = document.getElementById("progressTracker");
+                    const result = document.getElementById("result");
+
+                    if (data.status) {
+                        result.innerHTML = `Status of <b>${firID}</b>: <b>${data.status}</b>`;
+                        tracker.style.display = "flex";
+
+                        for (let i = 1; i <= 3; i++) document.getElementById("step" + i).classList.remove("active");
+
+                        if (data.status === "Pending") document.getElementById("step1").classList.add("active");
+                        if (data.status === "Working") {
+                            document.getElementById("step1").classList.add("active");
+                            document.getElementById("step2").classList.add("active");
+                        }
+                        if (data.status === "Solved") {
+                            document.getElementById("step1").classList.add("active");
+                            document.getElementById("step2").classList.add("active");
+                            document.getElementById("step3").classList.add("active");
+                        }
+
+                    } else {
+                        result.innerHTML = `❌ FIR ID <b>${firID}</b> not found.`;
+                        tracker.style.display = "none";
+                    }
+                })
+                .catch(err => console.error(err));
+        }
+    </script>
+
+</body>
+
+</html>

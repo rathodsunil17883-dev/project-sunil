@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Complaint Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: url('img/policecap.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+        }
+        /* Navbar */
+        
+        .navbar {
+            background: rgba(44, 62, 80, 0.85);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+        
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+        
+        .navbar ul li a:hover {
+            color: #f39c12;
+        }
+        /* Profile Container */
+        
+        .profile-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2c3e50;
+        }
+        
+        .profile-header div h2 {
+            margin-bottom: 5px;
+        }
+        
+        .profile-header div p {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        .edit-btn {
+            padding: 8px 15px;
+            background: #8e44ad;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .edit-btn:hover {
+            background: #732d91;
+        }
+        /* Edit Form */
+        
+        .edit-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+        
+        .edit-form label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        /* Complaints Table */
+        
+        .user-complaints {
+            margin-top: 40px;
+        }
+        
+        .user-complaints table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
+        }
+        
+        .user-complaints th,
+        .user-complaints td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        .user-complaints th {
+            background: rgba(44, 62, 80, 0.85);
+            color: white;
+        }
+        
+        .user-complaints tr:hover {
+            background: rgba(241, 241, 241, 0.4);
+        }
+        /* Emergency Cards */
+        
+        .emergency-section {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .emergency-card {
+            flex: 1 1 calc(33% - 20px);
+            background: rgba(231, 76, 60, 0.7);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .emergency-card i {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .emergency-card h4 {
+            margin-bottom: 5px;
+        }
+        /* Footer */
+        
+        footer {
+            background: rgba(44, 62, 80, 0.85);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            backdrop-filter: blur(5px);
+        }
+        
+        footer .social-icons a {
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+        
+        footer .social-icons a:hover {
+            color: #f39c12;
+        }
+        /* Responsive */
+        
+        @media(max-width:900px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .emergency-section {
+                flex-direction: column;
+            }
+            .emergency-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Sangli Police Complaint Portal</div>
+        <ul>
+            <li><a href="userhomepage.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="complaint_register.html"><i class="fas fa-file-alt"></i> File Complaint</a></li>
+            <li><a href="#"><i class="fas fa-history"></i> My Complaints</a></li>
+            <li><a href="userlogin.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <img src="img/user.png" alt="User Photo">
+            <div>
+                <h2>John Doe</h2>
+                <p>Email: john@example.com</p>
+                <p>Phone: +91 9876543210</p>
+                <button class="edit-btn">Edit Profile</button>
+            </div>
+        </div>
+
+        <!-- Edit Profile Form -->
+        <div class="edit-form" style="display:none;">
+            <label>Full Name</label>
+            <input type="text" value="John Doe">
+            <label>Email</label>
+            <input type="email" value="john@example.com">
+            <label>Phone</label>
+            <input type="tel" value="+91 9876543210">
+            <button class="edit-btn">Save Changes</button>
+        </div>
+
+        <!-- User Complaints -->
+        <section class="user-complaints">
+            <h2>My Complaints</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>FIR ID</th>
+                        <th>Complaint Title</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FIR101</td>
+                        <td>Noise Complaint</td>
+                        <td>2025-09-23</td>
+                        <td>10:30</td>
+                        <td>Pending</td>
+                    </tr>
+                    <tr>
+                        <td>FIR102</td>
+                        <td>Theft</td>
+                        <td>2025-09-22</td>
+                        <td>14:15</td>
+                        <td>Accepted</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Emergency Numbers -->
+        <section class="emergency-section">
+            <div class="emergency-card">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Police</h4>
+                <p>100</p>
+            </div>
+            <div class="emergency-card">
+                <i class="fas fa-ambulance"></i>
+                <h4>Ambulance</h4>
+                <p>108</p>
+            </div>
+            <div class="emergency-card">
+                <i class="fas fa-female"></i>
+                <h4>Women Helpline</h4>
+                <p>1091</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Follow us on:</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 Complaint Portal. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle Edit Profile Form
+        const editBtn = document.querySelector('.edit-btn');
+        const editForm = document.querySelector('.edit-form');
+        editBtn.addEventListener('click', () => {
+            editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
+        });
+    </script>
+
+</body>
+
+</html>

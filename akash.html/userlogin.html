@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>User Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -47,8 +47,15 @@
         }
         
         .navbar .logo {
-            font-size: 1.5em;
-            font-weight: bold;
+            font-size: 1.2em;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar .logo img {
+            height: 50px;
+            margin-right: 10px;
         }
         
         .navbar ul {
@@ -57,7 +64,8 @@
         }
         
         .navbar ul li {
-            margin-right: 35px;
+            margin-right: 25px;
+            position: relative;
         }
         
         .navbar ul li a {
@@ -68,6 +76,36 @@
         
         .navbar ul li a:hover {
             color: #f39c12;
+        }
+        /* Dropdown */
+        
+        .navbar ul li.dropdown .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-right: 20px;
+            min-width: 250px;
+            background: black;
+            color: white;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .navbar ul li.dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .navbar ul li.dropdown .dropdown-content p {
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: white;
+        }
+        
+        .navbar ul li.dropdown .dropdown-content p small {
+            color: #ccc;
         }
         /* Login container */
         
@@ -80,40 +118,26 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            margin-top: 100px;
+            margin-top: 120px;
             /* push below navbar */
         }
         
-        .login-container h2 {
+        h2 {
             margin-bottom: 20px;
             color: #2c3e50;
         }
         
-        .input-group {
-            margin: 15px 0;
-            text-align: left;
-        }
-        
-        .input-group label {
-            font-size: 14px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .input-group input {
+        input[type="email"],
+        input[type="password"] {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
-            outline: none;
+            border-radius: 8px;
+            font-size: 14px;
         }
         
-        .input-group input:focus {
-            border-color: #3498db;
-        }
-        
-        .btn {
+        button {
             width: 100%;
             padding: 12px;
             background: #3498db;
@@ -122,85 +146,45 @@
             color: white;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         
-        .btn:hover {
+        button:hover {
             background: #2980b9;
         }
         
-        .extra-links {
-            margin-top: 15px;
+        .links {
+            margin-top: 20px;
             font-size: 14px;
         }
         
-        .extra-links a {
+        .links a {
             color: #3498db;
             text-decoration: none;
+            margin: 0 5px;
         }
         
-        .extra-links a:hover {
+        .links a:hover {
             text-decoration: underline;
         }
-        /* Dropdown Navbar */
         
-        .navbar ul li.dropdown {
-            position: relative;
-        }
-        /* Dropdown content styling */
-        
-        .navbar ul li.dropdown .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            /* Align to right side of navbar item */
-            margin-right: 20px;
-            /* Add some margin from the right */
-            min-width: 250px;
-            background: black;
-            /* Black background */
-            color: white;
-            /* White text */
-            border-radius: 5px;
-            padding: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        /* Show dropdown on hover */
-        
-        .navbar ul li.dropdown:hover .dropdown-content {
-            display: block;
-        }
-        /* Individual questions */
-        
-        .navbar ul li.dropdown .dropdown-content p {
-            margin: 10px 0;
-            font-size: 0.9em;
-            color: white;
-            /* Ensure text stays white */
-        }
-        /* Answers inside dropdown */
-        
-        .navbar ul li.dropdown .dropdown-content p small {
-            color: #ccc;
-            /* Slightly lighter for answers */
+        .small-note {
+            font-size: 12px;
+            color: #555;
+            margin-top: 10px;
         }
     </style>
 </head>
 
 <body>
+
     <!-- Navbar -->
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="visitorpage.html" style="display:flex; align-items:center; text-decoration:none; color:white;">
-                    <img src="img/sanglipolicelogo-removebg-preview.png" alt="Logo" style="height:70px; margin-right:10px;">
-                    <span style="font-size:1em; font-weight:normal;">Sangli Police Complaint Portal</span>
-                </a>
+                <img src="img/sanglipolicelogo-removebg-preview.png" alt="Logo"> Sangli Police Complaint Portal
             </div>
             <ul>
-
                 <li><a href="visitorpage.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="usertracker.html"><i class="fas fa-search-location"></i> Track Complaint</a></li>
                 <li class="dropdown">
@@ -217,55 +201,63 @@
                         <p><strong>Cyber Crime:</strong> 155260</p>
                     </div>
                 </li>
-
                 <li><a href="aboutsanglipolice.html"><i class="fas fa-university"></i> About Sangli Police</a></li>
 
                 <li class="dropdown">
                     <a href="#"><i class="fas fa-question-circle"></i> FAQs <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-content">
-                        <p><strong>Q1:</strong> How can I register a complaint?<br>
+                        <p><strong>Q1:</strong> How to register a complaint?<br>
                             <small>A1: Click on "Register Complaint" and fill the form.</small></p>
-
-                        <p><strong>Q2:</strong> How do I track my complaint?<br>
-                            <small>A2: Use "Track Complaint" and enter your complaint ID.</small></p>
-
+                        <p><strong>Q2:</strong> How to track complaints?<br>
+                            <small>A2: Use "Track Complaint" with your complaint ID.</small></p>
                         <p><strong>Q3:</strong> What are emergency numbers?<br>
-                            <small>A3: Call 100 for emergencies.</small></p>
-
-                        <p><strong>Q4:</strong> How to provide civic feedback?<br>
-                            <small>A4: Use the "Civic Sense" section on the portal.</small></p>
-
-                        <p><strong>Q5:</strong> Is my personal info safe?<br>
-                            <small>A5: Yes, all data is encrypted and secure.</small></p>
+                            <small>A3: Call 100 for immediate help.</small></p>
+                        <p><strong>Q4:</strong> How to give feedback?<br>
+                            <small>A4: Use the "Civic Sense" section.</small></p>
+                        <p><strong>Q5:</strong> Is my info safe?<br>
+                            <small>A5: Yes, all data is secure.</small></p>
                     </div>
                 </li>
             </ul>
         </nav>
-
     </header>
 
     <!-- Login Form -->
     <div class="login-container">
-        <h2><i class="fas fa-user-shield"></i> Admin Login</h2>
-        <form>
-            <div class="input-group">
-                <label>Email</label>
-                <input type="email" placeholder="Enter your email" required>
-            </div>
-            <div class="input-group">
-                <label>Password</label>
-                <input type="password" placeholder="Enter your password" required>
-            </div>
-            <button type="submit" class="btn">Login</button>
+        <h2><i class="fas fa-user"></i> User Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <button type="submit">Login</button>
         </form>
-        <div class="extra-links">
-            Don’t have an account? <a href="adminregister.html">Register</a>|
-            <a href="forgotpassword.html">Forgot Password</a>|
 
-            <a href="userlogin.html">Login as User</a></p>
+        <div class="links">
+            <a href="userregister.html">Create Account</a> |
+            <a href="forgot_password.html">Forgot Password?</a> |
+            <br></br>
+            <a href="adminlogin.html">Login as Admin</a>
+        </div>
 
+        <div class="small-note">
+            Please use your registered email and password to login.
         </div>
     </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            if (email === "" || password === "") {
+                alert("Please fill in both fields.");
+                return;
+            }
+            alert("Login attempted with Email: " + email + "\nPassword: " + password);
+        });
+    </script>
+
+
 </body>
 
 </html>

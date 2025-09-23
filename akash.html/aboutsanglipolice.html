@@ -4,204 +4,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaint Management System</title>
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Font Awesome for Social Media Icons -->
+    <title>About Sangli Police</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* General Reset */
+        /* Reset */
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /* Background Image for whole page */
         
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             background: url('img/policecap.png') no-repeat center center fixed;
             background-size: cover;
-            background-color: rgba(0, 0, 0, 0.8);
             position: relative;
-        }
-        /* Semi-transparent overlay for readability */
-        
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.7);
-            /* adjust transparency here */
-            z-index: -1;
         }
         /* Navbar */
         
         .navbar {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 40px;
         }
         
-        .navbar .logo {
-            font-size: 1.5em;
-            font-weight: bold;
+        .navbar .logo img {
+            height: 70px;
+            margin-right: 10px;
         }
         
-        .navbar ul {
+        .navbar .logo span {
+            font-weight: normal;
+            font-size: 1.2em;
+            color: white;
+        }
+        
+        .nav-links {
             list-style: none;
             display: flex;
+            gap: 25px;
         }
         
-        .navbar ul li {
-            margin-left: 20px;
-        }
-        
-        .navbar ul li a {
+        .nav-links li a {
             text-decoration: none;
             color: white;
+            font-size: 1em;
             transition: color 0.3s;
         }
         
-        .navbar ul li a:hover,
-        .logout {
-            color: #f39c12;
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #f1c40f;
         }
-        /* Hero Section */
+        /* Hero */
         
         .hero {
-            height: 70vh;
-            background: url('img/policestation.png') center no-repeat;
-            background-size: 100% 150%;
-            /* Change size here */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            color: white;
-            position: relative;
-        }
-        
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            padding: 80px 20px;
             background: rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero h1,
-        .hero p,
-        .hero .btn {
-            position: relative;
-            z-index: 1;
+            color: white;
         }
         
         .hero h1 {
             font-size: 2.5em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .hero p {
+            font-size: 1.2em;
+        }
+        /* About Section */
+        
+        .about-police {
+            background: rgba(255, 255, 255, 0.85);
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 10px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .about-police h2 {
+            color: #2c3e50;
             margin-bottom: 20px;
         }
         
-        .btn {
-            background: #f39c12;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: white;
-            border-radius: 5px;
-            transition: background 0.3s;
+        .about-police p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        /* Officers Grid */
+        
+        .officers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
         }
         
-        .btn:hover {
-            background: #e67e22;
-        }
-        /* Info Section */
-        
-        .info-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 50px 20px;
-            gap: 120px;
-            background: rgba(255, 255, 255, 0.3);
-            /* 30% visible background */
+        .officer {
+            background: white;
+            padding: 15px;
             border-radius: 10px;
-            margin: 30px auto;
-            width: 90%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
         }
         
-        .info-section img {
-            max-width: 25%;
-            height: 10%;
+        .officer:hover {
+            transform: translateY(-5px);
+        }
+        
+        .officer img {
+            width: 180px;
+            /* Fixed width for all images */
+            height: 180px;
+            /* Fixed height for all images */
+            object-fit: cover;
+            /* Crop image to fit box without distortion */
             border-radius: 10px;
+            display: block;
+            margin: 0 auto;
         }
         
-        .info-text {
-            width: 55%;
-            text-align: left;
-        }
-        
-        .info-text h2 {
-            margin-bottom: 15px;
+        .officer h3 {
+            margin: 10px 0 5px;
             color: #2c3e50;
         }
         
-        .info-text p {
+        .officer p {
             color: #555;
-            font-size: 1.1em;
-        }
-        /* Sections */
-        
-        section {
-            padding: 40px 20px;
-            text-align: center;
-        }
-        
-        .about,
-        .contact {
-            background: rgba(255, 255, 255, 0.3);
-            /* 30% visible background */
-            margin: 20px 0;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            font-size: 0.95em;
         }
         /* Footer */
         
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
             text-align: center;
-            padding: 20px;
+            padding: 20px 10px;
+            margin-top: 40px;
+        }
+        
+        footer .social-icons {
+            margin: 15px 0;
         }
         
         footer .social-icons a {
-            margin: 0 10px;
             color: white;
+            margin: 0 10px;
             font-size: 1.5em;
             transition: color 0.3s;
         }
         
         footer .social-icons a:hover {
-            color: #f39c12;
+            color: #f1c40f;
         }
-        /* Dropdown Navbar */
         
         .navbar ul li.dropdown {
             position: relative;
@@ -249,20 +211,16 @@
 </head>
 
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navbar -->
     <header>
         <nav class="navbar">
             <div class="logo" style="display:flex; align-items:center;">
-                <!-- Logo image -->
-                <img src="img/sanglipolicelogo-removebg-preview.png" alt="Sangli Police Logo" style="height:70px; margin-right:10px;">
-                <!-- Portal name text -->
-                <span style="font-weight:normal; font-size:1em; color:white;">Sangli Police Complaint Portal</span>
+                <img src="img/sanglipolicelogo-removebg-preview.png" alt="Sangli Police Logo">
+                <span>Sangli Police Complaint Portal</span>
             </div>
             <ul class="nav-links">
                 <li><a href="visitorpage.html"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="usertracker.html"><i class="fas fa-search-location"></i> Track Complaint</a></li>
-
-
                 <li class="dropdown">
                     <a href="#"><i class="fas fa-phone"></i> Emergency Numbers <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-content">
@@ -277,9 +235,8 @@
                         <p><strong>Cyber Crime:</strong> 155260</p>
                     </div>
                 </li>
+                <li><a href="aboutsanglipolice.html" class="active"><i class="fas fa-university"></i> About Sangli Police</a></li>
 
-                <li><a href="aboutsanglipolice.html"><i class="fas fa-university"></i> About Sangli Police</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Civic Sense</a></li>
                 <li class="dropdown">
                     <a href="#"><i class="fas fa-question-circle"></i> FAQs <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-content">
@@ -299,45 +256,45 @@
                             <small>A5: Yes, all data is encrypted and secure.</small></p>
                     </div>
                 </li>
-
                 <li><a href="userlogin.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
             </ul>
         </nav>
     </header>
 
-
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
-        <h1>Welcome to the Sangli Police Complaint Portal</h1>
-        <p>Register your complaint easily and track its progress anytime.</p>
-        <a href="userlogin.html" class="btn">Register Complaint</a>
+        <h1>About Sangli Police</h1>
+        <p>Meet the officers who serve and protect the citizens of Sangli.</p>
     </section>
 
-    <!-- Info Section (Add Photo + Description Here) -->
-    <section class="info-section">
-        <img src="img/WhatsApp-Image-2024-07-06-at-15.58.48.jpg" alt="Awareness Image">
-        <div class="info-text">
-            <h2>Shri. Sandip B.Ghuge </h2>
-            <h3>IPS Superintendent of Police, Sangli</h3>
-            <p>
-                Our portal ensures transparency, accountability, and speed. Citizens can lodge their complaints in just a few clicks and monitor the progress at every stage. Together, we make our community safer and stronger.
-            </p>
+    <!-- Police Info Section -->
+    <section class="about-police">
+        <h2>Our Team</h2>
+        <p>The Sangli Police Department is committed to maintaining law and order, ensuring the safety of citizens, and building a secure environment for all.</p>
+
+        <!-- Officers Grid -->
+        <div class="officers-grid">
+            <div class="officer">
+                <img src="img/police1.png" alt="SP Image" img size="height 20px; width 20px;">
+                <h3>Sanjay Snehalata Shivajirao More </h3>
+                <p>Sangli Police Station Incharge</p>
+            </div>
+            <div class="officer">
+                <img src="img/police2.png" alt="PI Image">
+                <h3>Kiran Hirabai Vasantrao Chaugle r</h3>
+                <p>Sangli Rural Police Inspector</p>
+            </div>
+            <div class="officer">
+                <img src="img/police3.png" alt="HC Image">
+                <h3>Sudhir Suman Gulchand Bhalerao </h3>
+                <p>Vishrambag POlice Station Incharge</p>
+            </div>
+            <div class="officer">
+                <img src="img/police4.png" alt="Constable Image">
+                <h3>Suraj Noorjahan Yasin Bijali </h3>
+                <p>SanjayNagar Police Station Inscharge</p>
+            </div>
         </div>
-    </section>
-
-    <!-- About Us -->
-    <section class="about" id="about">
-        <h2>About Us</h2>
-        <p>
-            Our system provides a transparent and efficient way for the public to lodge complaints and track their resolution. We aim to make the process simple, fast, and reliable.
-        </p>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: support@complaintportal.com</p>
-        <p>Phone: +91 9876543210</p>
     </section>
 
     <!-- Footer -->
